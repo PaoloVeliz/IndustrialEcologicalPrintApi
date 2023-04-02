@@ -107,9 +107,7 @@ class PetroleumDerivatesController extends Controller
 
     public function electricalVsCombustible($month){
         $admin_result_com = PetroleumDerivates::whereMonth('date',$month)->where("responsable_team","administrativo")->where("name","combustible")->sum('amount') ;
-        
         $logistic_result_com = PetroleumDerivates::whereMonth('date',$month)->where("responsable_team","logistico")->where("name","combustible")->sum('amount');
-       
         $operational_result_com = PetroleumDerivates::whereMonth('date',$month)->where("responsable_team","operacion")->where("name","combustible")->sum('amount');
         $total_com = $admin_result_com + $logistic_result_com + $operational_result_com;
         $admin_result_ene = ElectricalEnergy::whereMonth('date',$month)->where("responsable_team","administrativo")->sum('amount') ;
